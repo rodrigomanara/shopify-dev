@@ -1,4 +1,8 @@
 # shopify-dev
+### shop app to add products 
+http://shopify.rodrigomanara.co.uk/
+
+
 ```php
 parameters:
     urg_shopfy:
