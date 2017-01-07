@@ -1,0 +1,113 @@
+{% extends "UrgShopfyBundle:template:home.html.twig" %}
+
+{% form_theme form 'UrgShopfyBundle:Form:fields.html.twig' %}
+
+{% block body %}
+    {{ form_start(form) }} 
+    <div class="row">
+        <div class="input-field col s12">
+
+            {% block _product_title_row %}
+                {{ form_label(form.title) }}
+                {{ form_errors(form.title) }}
+                {{ form_widget(form.title) }} 
+            {% endblock %} 
+        </div>
+        <div class="input-field col s6">
+            {% block _product_vendor_row %}
+                {{ form_label(form.vendor) }}
+                {{ form_errors(form.vendor) }}
+                {{ form_widget(form.vendor) }} 
+            {% endblock %} 
+        </div>
+
+        <div class="input-field col s6">
+            {% block _product_product_type_row %}
+                {{ form_label(form.product_type) }}
+                {{ form_errors(form.product_type) }}
+                {{ form_widget(form.product_type) }} 
+            {% endblock %} 
+        </div>
+        <div class="input-field col s12"> 
+            {% block _product_image_row %}         
+                {{ form_errors(form.image) }}
+                {{ form_widget(form.image) }} 
+                <div class="col s4">              
+                    <img src="{{ asset('bundles/urgshopfy/image/download.png') }}" id="image_holder" class="responsive-img"/>
+                </div>
+                <div class="col s8">
+                    <div class="clear"> &nbsp;</div>
+                    <div class="row">
+                        <div id="dragandrophandler" class="col s12 text-center">
+                            <h2 class="green-text text-center"> Drag & Drop Files Here</h2>
+                        </div>
+                    </div>
+                </div>
+            {% endblock %}
+        </div>
+        <div class="input-field col s12">
+            {% block _product_variants_option1_row %}
+                {% for childs in form.variants %}
+                    <div class="input-field col s4"> 
+                        {{ form_row(childs) }}
+                    </div>
+                {% endfor %}
+            {% endblock %}
+        </div>
+    </div>
+
+    {{ form_end(form) }}
+
+{% endblock %}
+
+{% block footer_script %}
+    {{ parent() }}
+    <script>
+        var $ = jQuery;
+        $(document).ready(function ()
+        {
+            var obj = $("#dragandrophandler");
+            obj.on('dragenter', function (e)
+            {
+                e.stopPropagation();
+                e.preventDefault();
+                $(this).css('border', '2px solid #0B85A1');
+            });
+            obj.on('dragover', function (e)
+            {
+                e.stopPropagation();
+                e.preventDefault();
+            });
+            obj.on('drop', function (e)
+            {
+
+                $(this).css('border', '2px dotted #0B85A1');
+                e.preventDefault();
+                var files = e.originalEvent.dataTransfer.files;
+
+                $('.statusbar').remove();
+                //We need to send dropped files to Server
+                handleFileUpload(files, obj, "{{ url('urg_shopfy_homepage_upload') }}");
+            });
+            $(document).on('dragenter', function (e)
+            {
+                e.stopPropagation();
+                e.preventDefault();
+            });
+            $(document).on('dragover', function (e)
+            {
+                e.stopPropagation();
+                e.preventDefault();
+                obj.css('border', '2px dotted #0B85A1');
+            });
+            $(document).on('drop', function (e)
+            {
+                e.stopPropagation();
+                e.preventDefault();
+            });
+
+        });
+
+
+    </script>
+{% endblock %}    

@@ -1,0 +1,18 @@
+parameters:
+    urg_shopfy:
+        api_key: "49884bc40663d16bebf8ddea32543cb1"
+        password: "c39289eef8fffaf7909c5bc9d3a55b38"
+        shared_secret: "5da64dd645e651e2af1a74edd5550ef8"
+        domain: "dingence81-dev.myshopify.com"
+        scope: 
+            - read_content
+            - write_content
+            - read_products
+            - write_products
+    
+services:
+    urg_shopify.service.api:
+        class: Urg\ShopfyBundle\Api\Shopify
+        arguments: ["%urg_shopfy%"]
+        calls:
+            - [setPrivateApp]

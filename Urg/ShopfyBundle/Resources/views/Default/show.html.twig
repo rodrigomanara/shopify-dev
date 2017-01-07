@@ -1,0 +1,102 @@
+{% extends "UrgShopfyBundle:template:home.html.twig" %}
+
+
+
+{% block body %}  
+    <div class="col s12 m8 offset-m2 l6 offset-l3">
+        <div class="card-panel grey lighten-5 z-depth-1">
+            <div class="row valign-wrapper">
+                <div class="col s2">
+                    <img src="{{ products.image.src }}" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+                </div>
+                <div class="col s10">
+                    <div class="col s12">
+                        <h3> {{ products.title }} </h3>
+                    </div>
+                    <div class="col s12">
+                        <p> {{ products.body_html }} </p>
+                    </div>
+
+                    <div class="col s12">
+                        <div class="row">
+                            <div class="col s12"><b> product type  </b>: {{ products.product_type }} </div>
+                            <div class="col s12"> <b> product vendor  </b>: {{ products.vendor }} </div>
+                            <div class="col s12"> <b> product id  </b>: {{ products.id }} </div>
+                        </div>
+                        <div class="row">
+                            {% for variant in products.variants %}
+                                <div class="col s2"> <b> price </b>: {{ variant.price }} </div> 
+                                <div class="col s2"> <b> sku </b>: {{ variant.sku }} </div>  
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12">
+            <a class="waves-effect waves-light btn" href="/"><i class="material-icons right">cloud</i>Add new Product</a>
+        
+        </div>
+    </div>
+{% endblock body %}
+
+{#
+
+ +"id": 8473586248
+  +"title": "Test 7"
+  +"body_html": "dasdasd"
+  +"vendor": "rodrigo"
+  +"product_type": "roupa"
+  +"created_at": "2017-01-06T19:05:33-05:00"
+  +"handle": "test-13"
+  +"updated_at": "2017-01-06T19:05:33-05:00"
+  +"published_at": "2017-01-06T19:05:33-05:00"
+  +"template_suffix": null
+  +"published_scope": "global"
+  +"tags": ""
+  +"variants": array:1 [▼
+    0 => {#852 ▼
+      +"id": 28711966856
+      +"product_id": 8473586248
+      +"title": "Tets"
+      +"price": "15000.00"
+      +"sku": ";lkdsa;lsdk"
+      +"position": 1
+      +"grams": 0
+      +"inventory_policy": "deny"
+      +"compare_at_price": null
+      +"fulfillment_service": "manual"
+      +"inventory_management": null
+      +"option1": "Tets"
+      +"option2": null
+      +"option3": null
+      +"created_at": "2017-01-06T19:05:33-05:00"
+      +"updated_at": "2017-01-06T19:05:33-05:00"
+      +"taxable": true
+      +"barcode": null
+      +"image_id": null
+      +"inventory_quantity": 1
+      +"weight": 0.0
+      +"weight_unit": "lb"
+      +"old_inventory_quantity": 1
+      +"requires_shipping": true
+    }
+  ]
+  +"options": array:1 [▼
+    0 => {#837 ▼
+      +"id": 10176054088
+      +"product_id": 8473586248
+      +"name": "Title"
+      +"position": 1
+      +"values": array:1 [▼
+        0 => "Tets"
+      ]
+    }
+  ]
+  +"images": []
+  +"image": null
+}
+
+#}

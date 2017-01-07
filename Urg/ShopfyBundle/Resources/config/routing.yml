@@ -1,0 +1,13 @@
+urg_shopfy_homepage:
+    path:     /
+    defaults: { _controller: UrgShopfyBundle:Default:index }
+urg_shopfy_homepage_upload:
+    path:     /upload
+    defaults: { _controller: UrgShopfyBundle:Default:upload } 
+
+urg_shopfy_show_upload:
+    path:     /product/{id}
+    defaults: { _controller: UrgShopfyBundle:Default:show }  
+    requirements:
+        id: '\d+'
+    
